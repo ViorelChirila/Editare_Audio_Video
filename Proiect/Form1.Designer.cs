@@ -33,6 +33,7 @@
             this.btnLoadVideo = new System.Windows.Forms.Button();
             this.labelFrame = new System.Windows.Forms.Label();
             this.trackBarVideo = new System.Windows.Forms.TrackBar();
+            this.checkBoxGray = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).BeginInit();
             this.SuspendLayout();
@@ -82,11 +83,22 @@
             this.trackBarVideo.Size = new System.Drawing.Size(610, 56);
             this.trackBarVideo.TabIndex = 4;
             // 
+            // checkBoxGray
+            // 
+            this.checkBoxGray.AutoSize = true;
+            this.checkBoxGray.Location = new System.Drawing.Point(658, 64);
+            this.checkBoxGray.Name = "checkBoxGray";
+            this.checkBoxGray.Size = new System.Drawing.Size(58, 20);
+            this.checkBoxGray.TabIndex = 5;
+            this.checkBoxGray.Text = "Gray";
+            this.checkBoxGray.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1105, 470);
+            this.Controls.Add(this.checkBoxGray);
             this.Controls.Add(this.trackBarVideo);
             this.Controls.Add(this.labelFrame);
             this.Controls.Add(this.btnLoadVideo);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button btnLoadVideo;
         private System.Windows.Forms.Label labelFrame;
         private System.Windows.Forms.TrackBar trackBarVideo;
+        private System.Windows.Forms.CheckBox checkBoxGray;
     }
 }
 

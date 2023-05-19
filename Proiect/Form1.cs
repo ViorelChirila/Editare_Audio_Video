@@ -1,4 +1,5 @@
 ﻿using Emgu.CV;
+using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,16 +44,29 @@ namespace Proiect
         {
             trackBarVideo.Minimum = 0;
             trackBarVideo.Maximum = video.getTotalFrames();
-            Mat m = new Mat();
+            ImageColorChanger changer = new ImageColorChanger();
             while (IsReadingFrame == true && video.getFrameNo() < video.getTotalFrames())
             {
                 video.IncreaseFrameNo();
                 var mat = video.getCapture().QueryFrame();
-                pBVideo.Image = mat.ToBitmap();
-                await Task.Delay(800 / Convert.ToInt16(video.getFps()));
+                VerifyGrayCheck(changer, mat);
+                await Task.Delay(1000 / Convert.ToInt16(video.getFps()));
                 labelFrame.Text ="Frame No: "+ video.getFrameNo().ToString() + "/" + video.getTotalFrames().ToString();
                 trackBarVideo.Value = video.getFrameNo();
                 
+            }
+        }
+
+        private void VerifyGrayCheck(ImageColorChanger changer, Mat mat)
+        {
+            if (checkBoxGray.Checked)
+            {
+                changer.ImageSet(mat.ToImage<Bgr, byte>());
+                pBVideo.Image = changer.Gryscale();
+            }
+            else
+            {
+                pBVideo.Image = mat.ToBitmap();
             }
         }
     }
