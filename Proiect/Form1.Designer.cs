@@ -33,9 +33,15 @@
             this.btnLoadVideo = new System.Windows.Forms.Button();
             this.labelFrame = new System.Windows.Forms.Label();
             this.trackBarVideo = new System.Windows.Forms.TrackBar();
-            this.checkBoxGray = new System.Windows.Forms.CheckBox();
+            this.radioButtonGray = new System.Windows.Forms.RadioButton();
+            this.radioButtonRed = new System.Windows.Forms.RadioButton();
+            this.radioButtonGreen = new System.Windows.Forms.RadioButton();
+            this.radioButtonBlue = new System.Windows.Forms.RadioButton();
+            this.groupBoxColorModifier = new System.Windows.Forms.GroupBox();
+            this.radioButtonNormal = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).BeginInit();
+            this.groupBoxColorModifier.SuspendLayout();
             this.SuspendLayout();
             // 
             // pBVideo
@@ -83,22 +89,85 @@
             this.trackBarVideo.Size = new System.Drawing.Size(610, 56);
             this.trackBarVideo.TabIndex = 4;
             // 
-            // checkBoxGray
+            // radioButtonGray
             // 
-            this.checkBoxGray.AutoSize = true;
-            this.checkBoxGray.Location = new System.Drawing.Point(658, 64);
-            this.checkBoxGray.Name = "checkBoxGray";
-            this.checkBoxGray.Size = new System.Drawing.Size(58, 20);
-            this.checkBoxGray.TabIndex = 5;
-            this.checkBoxGray.Text = "Gray";
-            this.checkBoxGray.UseVisualStyleBackColor = true;
+            this.radioButtonGray.AutoSize = true;
+            this.radioButtonGray.Location = new System.Drawing.Point(18, 68);
+            this.radioButtonGray.Name = "radioButtonGray";
+            this.radioButtonGray.Size = new System.Drawing.Size(57, 20);
+            this.radioButtonGray.TabIndex = 7;
+            this.radioButtonGray.TabStop = true;
+            this.radioButtonGray.Text = "Gray";
+            this.radioButtonGray.UseVisualStyleBackColor = true;
+            this.radioButtonGray.CheckedChanged += new System.EventHandler(this.radioButtonGray_CheckedChanged);
+            // 
+            // radioButtonRed
+            // 
+            this.radioButtonRed.AutoSize = true;
+            this.radioButtonRed.Location = new System.Drawing.Point(18, 103);
+            this.radioButtonRed.Name = "radioButtonRed";
+            this.radioButtonRed.Size = new System.Drawing.Size(54, 20);
+            this.radioButtonRed.TabIndex = 8;
+            this.radioButtonRed.TabStop = true;
+            this.radioButtonRed.Text = "Red";
+            this.radioButtonRed.UseVisualStyleBackColor = true;
+            this.radioButtonRed.CheckedChanged += new System.EventHandler(this.radioButtonRed_CheckedChanged);
+            // 
+            // radioButtonGreen
+            // 
+            this.radioButtonGreen.AutoSize = true;
+            this.radioButtonGreen.Location = new System.Drawing.Point(18, 138);
+            this.radioButtonGreen.Name = "radioButtonGreen";
+            this.radioButtonGreen.Size = new System.Drawing.Size(65, 20);
+            this.radioButtonGreen.TabIndex = 9;
+            this.radioButtonGreen.TabStop = true;
+            this.radioButtonGreen.Text = "Green";
+            this.radioButtonGreen.UseVisualStyleBackColor = true;
+            this.radioButtonGreen.CheckedChanged += new System.EventHandler(this.radioButtonGreen_CheckedChanged);
+            // 
+            // radioButtonBlue
+            // 
+            this.radioButtonBlue.AutoSize = true;
+            this.radioButtonBlue.Location = new System.Drawing.Point(18, 175);
+            this.radioButtonBlue.Name = "radioButtonBlue";
+            this.radioButtonBlue.Size = new System.Drawing.Size(55, 20);
+            this.radioButtonBlue.TabIndex = 10;
+            this.radioButtonBlue.TabStop = true;
+            this.radioButtonBlue.Text = "Blue";
+            this.radioButtonBlue.UseVisualStyleBackColor = true;
+            this.radioButtonBlue.CheckedChanged += new System.EventHandler(this.radioButtonBlue_CheckedChanged);
+            // 
+            // groupBoxColorModifier
+            // 
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonNormal);
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonRed);
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonBlue);
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonGray);
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonGreen);
+            this.groupBoxColorModifier.Location = new System.Drawing.Point(643, 12);
+            this.groupBoxColorModifier.Name = "groupBoxColorModifier";
+            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 214);
+            this.groupBoxColorModifier.TabIndex = 11;
+            this.groupBoxColorModifier.TabStop = false;
+            this.groupBoxColorModifier.Text = "ColorModifiers";
+            // 
+            // radioButtonNormal
+            // 
+            this.radioButtonNormal.AutoSize = true;
+            this.radioButtonNormal.Location = new System.Drawing.Point(18, 33);
+            this.radioButtonNormal.Name = "radioButtonNormal";
+            this.radioButtonNormal.Size = new System.Drawing.Size(72, 20);
+            this.radioButtonNormal.TabIndex = 12;
+            this.radioButtonNormal.TabStop = true;
+            this.radioButtonNormal.Text = "Normal";
+            this.radioButtonNormal.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1105, 470);
-            this.Controls.Add(this.checkBoxGray);
+            this.Controls.Add(this.groupBoxColorModifier);
             this.Controls.Add(this.trackBarVideo);
             this.Controls.Add(this.labelFrame);
             this.Controls.Add(this.btnLoadVideo);
@@ -108,6 +177,8 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).EndInit();
+            this.groupBoxColorModifier.ResumeLayout(false);
+            this.groupBoxColorModifier.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,7 +191,12 @@
         private System.Windows.Forms.Button btnLoadVideo;
         private System.Windows.Forms.Label labelFrame;
         private System.Windows.Forms.TrackBar trackBarVideo;
-        private System.Windows.Forms.CheckBox checkBoxGray;
+        private System.Windows.Forms.RadioButton radioButtonGray;
+        private System.Windows.Forms.RadioButton radioButtonRed;
+        private System.Windows.Forms.RadioButton radioButtonGreen;
+        private System.Windows.Forms.RadioButton radioButtonBlue;
+        private System.Windows.Forms.GroupBox groupBoxColorModifier;
+        private System.Windows.Forms.RadioButton radioButtonNormal;
     }
 }
 

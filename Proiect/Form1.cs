@@ -15,19 +15,30 @@ namespace Proiect
 {
     public partial class Form1 : Form
     {
+        VideoOperations operation = new VideoOperations();
+        bool IsReadingFrame;
+        Video video = new Video();
         public Form1()
         {
             InitializeComponent();
+            operation.FrameUpdated += Service_FrameUpdated;
+            
         }
-        Video video = new Video();
-        bool IsReadingFrame;
 
         private void btnLoadVideo_Click(object sender, EventArgs e)
         {
             
             video.LoadVideo();
-            
+            trackBarVideo.Minimum = 0;
+            trackBarVideo.Maximum = video.getTotalFrames();
             pBVideo.Image = video.GetMat().ToBitmap();
+        }
+        
+        private void Service_FrameUpdated(object sender, VideoEventArgs e)
+        {
+            labelFrame.Text= "Frame No: " + e.FrameNo.ToString() + "/" + video.getTotalFrames().ToString();
+            trackBarVideo.Value = e.FrameNo;
+            pBVideo.Image = e.Bitmap;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -37,37 +48,34 @@ namespace Proiect
                 return;
             }
             IsReadingFrame = true;
-            ReadAllFrames();
+            StartReadingFrames();
         }
 
-        private async void ReadAllFrames()
+        private async void StartReadingFrames()
         {
-            trackBarVideo.Minimum = 0;
-            trackBarVideo.Maximum = video.getTotalFrames();
-            ImageColorChanger changer = new ImageColorChanger();
-            while (IsReadingFrame == true && video.getFrameNo() < video.getTotalFrames())
-            {
-                video.IncreaseFrameNo();
-                var mat = video.getCapture().QueryFrame();
-                VerifyGrayCheck(changer, mat);
-                await Task.Delay(1000 / Convert.ToInt16(video.getFps()));
-                labelFrame.Text ="Frame No: "+ video.getFrameNo().ToString() + "/" + video.getTotalFrames().ToString();
-                trackBarVideo.Value = video.getFrameNo();
-                
-            }
+            await operation.ReadAllFrames(video);
         }
 
-        private void VerifyGrayCheck(ImageColorChanger changer, Mat mat)
+        
+
+        private void radioButtonGray_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxGray.Checked)
-            {
-                changer.ImageSet(mat.ToImage<Bgr, byte>());
-                pBVideo.Image = changer.Gryscale();
-            }
-            else
-            {
-                pBVideo.Image = mat.ToBitmap();
-            }
+            operation.flags.grayFlag = radioButtonGray.Checked;
+        }
+
+        private void radioButtonRed_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.flags.redFilterFlag = radioButtonRed.Checked;
+        }
+
+        private void radioButtonGreen_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.flags.greenFilterFlag = radioButtonGreen.Checked;
+        }
+
+        private void radioButtonBlue_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.flags.blueFilterFlag = radioButtonBlue.Checked;
         }
     }
 }
