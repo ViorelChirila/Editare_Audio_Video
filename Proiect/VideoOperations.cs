@@ -21,7 +21,7 @@ namespace Proiect
             {
                 video.IncreaseFrameNo();
                 var mat = video.getCapture().QueryFrame();
-                args.Bitmap = VerifyGrayCheck(changer, mat);
+                args.Bitmap = ApplyFlagsValues(changer, mat);
                 args.FrameNo = video.getFrameNo();
                 await Task.Delay(1000 / Convert.ToInt16(video.getFps()));
                 OnFrameUpdated(args);
@@ -37,7 +37,7 @@ namespace Proiect
             }
         }
 
-        private Bitmap VerifyGrayCheck(ImageColorChanger changer, Mat mat)
+        private Bitmap ApplyFlagsValues(ImageColorChanger changer, Mat mat)
         {
             switch(true)
             {
