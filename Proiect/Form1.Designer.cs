@@ -49,9 +49,12 @@
             this.pBVideo.Location = new System.Drawing.Point(12, 12);
             this.pBVideo.Name = "pBVideo";
             this.pBVideo.Size = new System.Drawing.Size(610, 297);
-            this.pBVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pBVideo.TabIndex = 0;
             this.pBVideo.TabStop = false;
+            this.pBVideo.Paint += new System.Windows.Forms.PaintEventHandler(this.pBVideo_Paint);
+            this.pBVideo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBVideo_MouseDown);
+            this.pBVideo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pBVideo_MouseMove);
+            this.pBVideo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pBVideo_MouseUp);
             // 
             // btnPlay
             // 

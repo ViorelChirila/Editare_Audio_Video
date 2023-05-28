@@ -16,44 +16,55 @@ namespace Proiect
     public partial class Form1 : Form
     {
         VideoOperations operation = new VideoOperations();
-        bool IsReadingFrame;
-        Video video = new Video();
+        Rectangle rect;
+        Point StartROI;
+        bool MouseDown;
         public Form1()
         {
             InitializeComponent();
-            operation.FrameUpdated += Service_FrameUpdated;
             
+
         }
 
         private void btnLoadVideo_Click(object sender, EventArgs e)
         {
-            
-            video.LoadVideo();
-            trackBarVideo.Minimum = 0;
-            trackBarVideo.Maximum = video.getTotalFrames();
-            pBVideo.Image = video.GetMat().ToBitmap();
+            operation.VideoLoad += Operation_VideoLoad;
+            operation.LoadVideo();
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(this, "Do you want ROI", "ROI", buttons);
+            if (result == DialogResult.Yes)
+            {
+                operation.flags.roiFlag = true;
+            }
+            else
+            {
+                operation.flags.roiFlag = false;
+            }
         }
-        
+
+        private void Operation_VideoLoad(object sender, VideoEventArgs e)
+        {
+            trackBarVideo.Minimum = 0;
+            trackBarVideo.Maximum = e.TotalFrames;
+            pBVideo.Image = e.m.ToBitmap();
+        }
+
         private void Service_FrameUpdated(object sender, VideoEventArgs e)
         {
-            labelFrame.Text= "Frame No: " + e.FrameNo.ToString() + "/" + video.getTotalFrames().ToString();
+            labelFrame.Text= "Frame No: " + e.FrameNo.ToString() + "/" + e.TotalFrames.ToString();
             trackBarVideo.Value = e.FrameNo;
             pBVideo.Image = e.Bitmap;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (video.getCapture() == null)
-            {
-                return;
-            }
-            IsReadingFrame = true;
+            operation.FrameUpdated += Service_FrameUpdated;
             StartReadingFrames();
         }
 
         private async void StartReadingFrames()
         {
-            await operation.ReadAllFrames(video);
+            await operation.ReadAllFrames();
         }
 
         
@@ -76,6 +87,49 @@ namespace Proiect
         private void radioButtonBlue_CheckedChanged(object sender, EventArgs e)
         {
             operation.flags.blueFilterFlag = radioButtonBlue.Checked;
+        }
+
+        private void pBVideo_Paint(object sender, PaintEventArgs e)
+        {
+            if (MouseDown)
+            {
+                using (Pen pen = new Pen(Color.Yellow, 1))
+                {
+                    e.Graphics.DrawRectangle(pen, rect);
+                }
+            }
+        }
+
+        private void pBVideo_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDown = true;
+            StartROI = e.Location;
+        }
+
+        private void pBVideo_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (pBVideo.Image == null)
+            {
+                return;
+            }
+
+            int width = Math.Max(StartROI.X, e.X) - Math.Min(StartROI.X, e.X);
+            int height = Math.Max(StartROI.Y, e.Y) - Math.Min(StartROI.Y, e.Y);
+            rect = new Rectangle(Math.Min(StartROI.X, e.X),
+                Math.Min(StartROI.Y, e.Y),
+                width,
+                height);
+            Refresh();
+
+        }
+
+        private void pBVideo_MouseUp(object sender, MouseEventArgs e)
+        {
+            MouseDown = false;
+            if (pBVideo.Image == null || rect == Rectangle.Empty)
+            { return; }
+
+            operation.rect = rect;
         }
     }
 }

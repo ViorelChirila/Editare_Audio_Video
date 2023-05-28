@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Emgu.CV;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Proiect
     {
         public int FrameNo;
         public Bitmap Bitmap;
+        public int TotalFrames;
+        public Mat m;  
     }
 }

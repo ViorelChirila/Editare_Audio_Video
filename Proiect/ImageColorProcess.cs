@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace Proiect
 {
-    internal class ImageColorChanger
+    internal class ImageColorProcess
     {
         private Image<Bgr, byte> image;
 

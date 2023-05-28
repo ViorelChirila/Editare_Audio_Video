@@ -74,8 +74,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageColorChanger.cs" />
     <Compile Include="Flags.cs" />
+    <Compile Include="ImageColorProcess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoOperations.cs" />

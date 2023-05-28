@@ -12,32 +12,72 @@ namespace Proiect
     internal class VideoOperations
     {
         public event EventHandler<VideoEventArgs> FrameUpdated;
+        public event EventHandler<VideoEventArgs> VideoLoad;
         public Flags flags = new Flags();
-        public async Task ReadAllFrames(Video video)
+        public Rectangle rect;
+        private Video video;
+
+        public void LoadVideo()
         {
-            ImageColorChanger changer = new ImageColorChanger();
+            video = new Video();
+            video.LoadVideo();
+            if (video.getCapture() == null)
+            {
+                return;
+            }
+            VideoEventArgs args = new VideoEventArgs();
+            args.TotalFrames = video.getTotalFrames();
+            args.m = video.GetMat();
+            OnVideoLoad(args);
+        }
+        public async Task ReadAllFrames()
+        {
+            ImageColorProcess colorChanger = new ImageColorProcess();
             VideoEventArgs args = new VideoEventArgs();
             while (video.getFrameNo() < video.getTotalFrames())
             {
                 video.IncreaseFrameNo();
                 var mat = video.getCapture().QueryFrame();
-                args.Bitmap = ApplyFlagsValues(changer, mat);
+                if (flags.roiFlag)
+                {
+                    args.Bitmap = SubstractROI(colorChanger, mat);
+                }
+                else
+                {
+                    args.Bitmap = ApplyFlagsOperations(colorChanger, mat);
+                }
                 args.FrameNo = video.getFrameNo();
+                args.TotalFrames = video.getTotalFrames();
                 await Task.Delay(1000 / Convert.ToInt16(video.getFps()));
                 OnFrameUpdated(args);
             }
         }
 
+        protected virtual void OnVideoLoad(VideoEventArgs args)
+        {
+            VideoLoad?.Invoke(this, args);
+        }
         protected virtual void OnFrameUpdated(VideoEventArgs e)
         {
-            EventHandler<VideoEventArgs> handler = FrameUpdated;
-            if(handler != null)
-            {
-                handler(this, e);
-            }
+            FrameUpdated?.Invoke(this, e);
         }
 
-        private Bitmap ApplyFlagsValues(ImageColorChanger changer, Mat mat)
+        public Bitmap SubstractROI(ImageColorProcess changer, Mat mat)
+        {
+            var img = mat.ToImage<Bgr, byte>();
+            img.ROI = rect;
+            var imgROI = img.Copy();
+            Image<Bgr, byte> imgGrayRoi;
+            var m = imgROI.Mat;
+            imgGrayRoi = ApplyFlagsOperations(changer, m).ToImage<Bgr, byte>();
+            img.ROI = Rectangle.Empty;
+            img.ROI = rect;
+            imgGrayRoi.CopyTo(img);
+            img.ROI = Rectangle.Empty;
+            return img.ToBitmap();
+        }
+
+        private Bitmap ApplyFlagsOperations(ImageColorProcess changer, Mat mat)
         {
             switch(true)
             {
