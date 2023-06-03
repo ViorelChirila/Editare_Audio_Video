@@ -22,8 +22,6 @@ namespace Proiect
         public Form1()
         {
             InitializeComponent();
-            
-
         }
 
         private void btnLoadVideo_Click(object sender, EventArgs e)
@@ -88,7 +86,13 @@ namespace Proiect
         {
             operation.flags.blueFilterFlag = radioButtonBlue.Checked;
         }
+        private void radioButtonGamma_CheckedChanged(object sender, EventArgs e)
+        {
+            double gammaValue = (double)numericUpDownGamma.Value;
+            operation.SetGammaValue(gammaValue);
+            operation.flags.gammaFlag = radioButtonGamma.Checked;
 
+        }
         private void pBVideo_Paint(object sender, PaintEventArgs e)
         {
             if (MouseDown)
@@ -131,5 +135,7 @@ namespace Proiect
 
             operation.rect = rect;
         }
+
+        
     }
 }

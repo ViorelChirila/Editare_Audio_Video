@@ -39,9 +39,13 @@
             this.radioButtonBlue = new System.Windows.Forms.RadioButton();
             this.groupBoxColorModifier = new System.Windows.Forms.GroupBox();
             this.radioButtonNormal = new System.Windows.Forms.RadioButton();
+            this.numericUpDownGamma = new System.Windows.Forms.NumericUpDown();
+            this.labelGammaValue = new System.Windows.Forms.Label();
+            this.radioButtonGamma = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).BeginInit();
             this.groupBoxColorModifier.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).BeginInit();
             this.SuspendLayout();
             // 
             // pBVideo
@@ -142,6 +146,7 @@
             // 
             // groupBoxColorModifier
             // 
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonGamma);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonNormal);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonRed);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonBlue);
@@ -149,7 +154,7 @@
             this.groupBoxColorModifier.Controls.Add(this.radioButtonGreen);
             this.groupBoxColorModifier.Location = new System.Drawing.Point(643, 12);
             this.groupBoxColorModifier.Name = "groupBoxColorModifier";
-            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 214);
+            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 245);
             this.groupBoxColorModifier.TabIndex = 11;
             this.groupBoxColorModifier.TabStop = false;
             this.groupBoxColorModifier.Text = "ColorModifiers";
@@ -165,11 +170,47 @@
             this.radioButtonNormal.Text = "Normal";
             this.radioButtonNormal.UseVisualStyleBackColor = true;
             // 
+            // numericUpDownGamma
+            // 
+            this.numericUpDownGamma.DecimalPlaces = 1;
+            this.numericUpDownGamma.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownGamma.Location = new System.Drawing.Point(968, 90);
+            this.numericUpDownGamma.Name = "numericUpDownGamma";
+            this.numericUpDownGamma.Size = new System.Drawing.Size(125, 22);
+            this.numericUpDownGamma.TabIndex = 12;
+            // 
+            // labelGammaValue
+            // 
+            this.labelGammaValue.AutoSize = true;
+            this.labelGammaValue.Location = new System.Drawing.Point(868, 96);
+            this.labelGammaValue.Name = "labelGammaValue";
+            this.labelGammaValue.Size = new System.Drawing.Size(94, 16);
+            this.labelGammaValue.TabIndex = 13;
+            this.labelGammaValue.Text = "Gamma value:";
+            // 
+            // radioButtonGamma
+            // 
+            this.radioButtonGamma.AutoSize = true;
+            this.radioButtonGamma.Location = new System.Drawing.Point(18, 210);
+            this.radioButtonGamma.Name = "radioButtonGamma";
+            this.radioButtonGamma.Size = new System.Drawing.Size(76, 20);
+            this.radioButtonGamma.TabIndex = 14;
+            this.radioButtonGamma.TabStop = true;
+            this.radioButtonGamma.Text = "Gamma";
+            this.radioButtonGamma.UseVisualStyleBackColor = true;
+            this.radioButtonGamma.CheckedChanged += new System.EventHandler(this.radioButtonGamma_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1105, 470);
+            this.Controls.Add(this.labelGammaValue);
+            this.Controls.Add(this.numericUpDownGamma);
             this.Controls.Add(this.groupBoxColorModifier);
             this.Controls.Add(this.trackBarVideo);
             this.Controls.Add(this.labelFrame);
@@ -182,6 +223,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).EndInit();
             this.groupBoxColorModifier.ResumeLayout(false);
             this.groupBoxColorModifier.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,6 +242,9 @@
         private System.Windows.Forms.RadioButton radioButtonBlue;
         private System.Windows.Forms.GroupBox groupBoxColorModifier;
         private System.Windows.Forms.RadioButton radioButtonNormal;
+        private System.Windows.Forms.RadioButton radioButtonGamma;
+        private System.Windows.Forms.NumericUpDown numericUpDownGamma;
+        private System.Windows.Forms.Label labelGammaValue;
     }
 }
 

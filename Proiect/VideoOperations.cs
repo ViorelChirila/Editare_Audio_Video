@@ -16,6 +16,7 @@ namespace Proiect
         public Flags flags = new Flags();
         public Rectangle rect;
         private Video video;
+        private double gammaValue;
 
         public void LoadVideo()
         {
@@ -77,6 +78,11 @@ namespace Proiect
             return img.ToBitmap();
         }
 
+        public void SetGammaValue(double value)
+        {
+            gammaValue = value;
+        }
+
         private Bitmap ApplyFlagsOperations(ImageColorProcess changer, Mat mat)
         {
             switch(true)
@@ -93,6 +99,9 @@ namespace Proiect
                 case bool isChecked when flags.blueFilterFlag:
                     changer.ImageSet(mat.ToImage<Bgr, byte>());
                     return changer.BlueFilter();
+                case bool isChecked when flags.gammaFlag:
+                    changer.ImageSet(mat.ToImage<Bgr, byte>());
+                    return changer.GammaCorrection(gammaValue);
                 default:
                     return mat.ToBitmap();
             }

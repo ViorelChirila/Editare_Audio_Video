@@ -47,5 +47,12 @@ namespace Proiect
             blue_Image[2] = new Image<Gray, byte>(blue_Image.Width, blue_Image.Height, new Gray(0));
             return blue_Image.AsBitmap();
         }
+
+        public Bitmap GammaCorrection(double value)
+        {
+            Image<Bgr, byte> gamma_Image = image;
+            gamma_Image._GammaCorrect(value);
+            return gamma_Image.AsBitmap();
+        }
     }
 }
