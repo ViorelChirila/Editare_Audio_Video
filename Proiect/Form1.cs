@@ -1,4 +1,5 @@
 ﻿using Emgu.CV;
+using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Proiect
 {
@@ -19,9 +21,11 @@ namespace Proiect
         Rectangle rect;
         Point StartROI;
         bool MouseDown;
+        Array colorMapValues = Enum.GetValues(typeof(ColorMapType));
         public Form1()
         {
             InitializeComponent();
+            ExtractColorMapValues();
         }
 
         private void btnLoadVideo_Click(object sender, EventArgs e)
@@ -86,12 +90,15 @@ namespace Proiect
         {
             operation.flags.blueFilterFlag = radioButtonBlue.Checked;
         }
+        private void radioButtonColorMap_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.flags.colorMapFlag = radioButtonColorMap.Checked;
+        }
         private void radioButtonGamma_CheckedChanged(object sender, EventArgs e)
         {
             double gammaValue = (double)numericUpDownGamma.Value;
             operation.SetGammaValue(gammaValue);
             operation.flags.gammaFlag = radioButtonGamma.Checked;
-
         }
         private void pBVideo_Paint(object sender, PaintEventArgs e)
         {
@@ -134,6 +141,20 @@ namespace Proiect
             { return; }
 
             operation.rect = rect;
+        }
+
+        private void ExtractColorMapValues()
+        {
+            foreach (var value in colorMapValues)
+            {
+                comboBoxColorMap.Items.Add(value);
+            }
+        }
+
+        private void comboBoxColorMap_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ColorMapType selectedValue = (ColorMapType)comboBoxColorMap.SelectedItem;
+            operation.SetColorMap(selectedValue);
         }
 
         

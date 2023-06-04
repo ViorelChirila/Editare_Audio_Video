@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Emgu.CV.CvEnum;
 
 namespace Proiect
 {
@@ -53,6 +54,13 @@ namespace Proiect
             Image<Bgr, byte> gamma_Image = image;
             gamma_Image._GammaCorrect(value);
             return gamma_Image.AsBitmap();
+        }
+
+        public Bitmap ColorMap(ColorMapType colorMapType)
+        {
+            Image<Bgr, byte> colorMapImage = new Image<Bgr, byte>(image.Width, image.Height);
+            CvInvoke.ApplyColorMap(image, colorMapImage, colorMapType);
+            return colorMapImage.AsBitmap();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pBVideo = new System.Windows.Forms.PictureBox();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnLoadVideo = new System.Windows.Forms.Button();
@@ -42,10 +43,15 @@
             this.numericUpDownGamma = new System.Windows.Forms.NumericUpDown();
             this.labelGammaValue = new System.Windows.Forms.Label();
             this.radioButtonGamma = new System.Windows.Forms.RadioButton();
+            this.comboBoxColorMap = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radioButtonColorMap = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).BeginInit();
             this.groupBoxColorModifier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pBVideo
@@ -146,6 +152,7 @@
             // 
             // groupBoxColorModifier
             // 
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonColorMap);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonGamma);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonNormal);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonRed);
@@ -154,7 +161,7 @@
             this.groupBoxColorModifier.Controls.Add(this.radioButtonGreen);
             this.groupBoxColorModifier.Location = new System.Drawing.Point(643, 12);
             this.groupBoxColorModifier.Name = "groupBoxColorModifier";
-            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 245);
+            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 288);
             this.groupBoxColorModifier.TabIndex = 11;
             this.groupBoxColorModifier.TabStop = false;
             this.groupBoxColorModifier.Text = "ColorModifiers";
@@ -204,11 +211,48 @@
             this.radioButtonGamma.UseVisualStyleBackColor = true;
             this.radioButtonGamma.CheckedChanged += new System.EventHandler(this.radioButtonGamma_CheckedChanged);
             // 
+            // comboBoxColorMap
+            // 
+            this.comboBoxColorMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxColorMap.FormattingEnabled = true;
+            this.comboBoxColorMap.Location = new System.Drawing.Point(968, 146);
+            this.comboBoxColorMap.Name = "comboBoxColorMap";
+            this.comboBoxColorMap.Size = new System.Drawing.Size(125, 24);
+            this.comboBoxColorMap.TabIndex = 14;
+            this.comboBoxColorMap.SelectedIndexChanged += new System.EventHandler(this.comboBoxColorMap_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(852, 152);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 16);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Color map mode:";
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(Proiect.Form1);
+            // 
+            // radioButtonColorMap
+            // 
+            this.radioButtonColorMap.AutoSize = true;
+            this.radioButtonColorMap.Location = new System.Drawing.Point(18, 245);
+            this.radioButtonColorMap.Name = "radioButtonColorMap";
+            this.radioButtonColorMap.Size = new System.Drawing.Size(90, 20);
+            this.radioButtonColorMap.TabIndex = 16;
+            this.radioButtonColorMap.TabStop = true;
+            this.radioButtonColorMap.Text = "Color Map";
+            this.radioButtonColorMap.UseVisualStyleBackColor = true;
+            this.radioButtonColorMap.CheckedChanged += new System.EventHandler(this.radioButtonColorMap_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1105, 470);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxColorMap);
             this.Controls.Add(this.labelGammaValue);
             this.Controls.Add(this.numericUpDownGamma);
             this.Controls.Add(this.groupBoxColorModifier);
@@ -224,6 +268,7 @@
             this.groupBoxColorModifier.ResumeLayout(false);
             this.groupBoxColorModifier.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,6 +290,10 @@
         private System.Windows.Forms.RadioButton radioButtonGamma;
         private System.Windows.Forms.NumericUpDown numericUpDownGamma;
         private System.Windows.Forms.Label labelGammaValue;
+        private System.Windows.Forms.ComboBox comboBoxColorMap;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource form1BindingSource;
+        private System.Windows.Forms.RadioButton radioButtonColorMap;
     }
 }
 

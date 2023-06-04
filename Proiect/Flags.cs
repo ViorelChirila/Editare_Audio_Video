@@ -14,5 +14,6 @@ namespace Proiect
         public bool blueFilterFlag;
         public bool roiFlag;
         public bool gammaFlag;
+        public bool colorMapFlag;
     }
 }

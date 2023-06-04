@@ -1,4 +1,5 @@
 ﻿using Emgu.CV;
+using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Proiect
         public Rectangle rect;
         private Video video;
         private double gammaValue;
+        private ColorMapType colorMap;
 
         public void LoadVideo()
         {
@@ -83,6 +85,11 @@ namespace Proiect
             gammaValue = value;
         }
 
+        public void SetColorMap(ColorMapType value)
+        {
+            colorMap = value;
+        }
+
         private Bitmap ApplyFlagsOperations(ImageColorProcess changer, Mat mat)
         {
             switch(true)
@@ -102,6 +109,9 @@ namespace Proiect
                 case bool isChecked when flags.gammaFlag:
                     changer.ImageSet(mat.ToImage<Bgr, byte>());
                     return changer.GammaCorrection(gammaValue);
+                case bool isChecked when flags.colorMapFlag:
+                    changer.ImageSet(mat.ToImage<Bgr, byte>());
+                    return changer.ColorMap(colorMap);
                 default:
                     return mat.ToBitmap();
             }
