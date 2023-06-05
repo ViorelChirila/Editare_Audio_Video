@@ -76,6 +76,8 @@
     </Compile>
     <Compile Include="Flags.cs" />
     <Compile Include="ImageColorProcess.cs" />
+    <Compile Include="ImageResize.cs" />
+    <Compile Include="ImageRotate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoEdit.cs" />

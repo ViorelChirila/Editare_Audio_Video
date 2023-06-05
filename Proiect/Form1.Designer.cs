@@ -46,16 +46,27 @@
             this.comboBoxColorMap = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxVideoEdit = new System.Windows.Forms.GroupBox();
-            this.btnSelectVideo = new System.Windows.Forms.Button();
-            this.btnPictureInPicture = new System.Windows.Forms.Button();
-            this.textBoxConsole = new System.Windows.Forms.TextBox();
-            this.btnTransition = new System.Windows.Forms.Button();
             this.labelCountVideos = new System.Windows.Forms.Label();
+            this.btnTransition = new System.Windows.Forms.Button();
+            this.textBoxConsole = new System.Windows.Forms.TextBox();
+            this.btnPictureInPicture = new System.Windows.Forms.Button();
+            this.btnSelectVideo = new System.Windows.Forms.Button();
+            this.radioButtonResize = new System.Windows.Forms.RadioButton();
+            this.numericUpDownResize = new System.Windows.Forms.NumericUpDown();
+            this.labelResize = new System.Windows.Forms.Label();
+            this.labelRotate = new System.Windows.Forms.Label();
+            this.numericUpDownAngle = new System.Windows.Forms.NumericUpDown();
+            this.radioButtonRotate = new System.Windows.Forms.RadioButton();
+            this.groupBoxResizeRotate = new System.Windows.Forms.GroupBox();
+            this.radioButtonDefault = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).BeginInit();
             this.groupBoxColorModifier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).BeginInit();
             this.groupBoxVideoEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).BeginInit();
+            this.groupBoxResizeRotate.SuspendLayout();
             this.SuspendLayout();
             // 
             // pBVideo
@@ -165,7 +176,7 @@
             this.groupBoxColorModifier.Controls.Add(this.radioButtonGreen);
             this.groupBoxColorModifier.Location = new System.Drawing.Point(643, 12);
             this.groupBoxColorModifier.Name = "groupBoxColorModifier";
-            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 288);
+            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 275);
             this.groupBoxColorModifier.TabIndex = 11;
             this.groupBoxColorModifier.TabStop = false;
             this.groupBoxColorModifier.Text = "Color Modifiers";
@@ -231,7 +242,7 @@
             // 
             this.comboBoxColorMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxColorMap.FormattingEnabled = true;
-            this.comboBoxColorMap.Location = new System.Drawing.Point(968, 146);
+            this.comboBoxColorMap.Location = new System.Drawing.Point(968, 118);
             this.comboBoxColorMap.Name = "comboBoxColorMap";
             this.comboBoxColorMap.Size = new System.Drawing.Size(125, 24);
             this.comboBoxColorMap.TabIndex = 14;
@@ -240,7 +251,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(852, 152);
+            this.label1.Location = new System.Drawing.Point(852, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 16);
             this.label1.TabIndex = 15;
@@ -253,22 +264,41 @@
             this.groupBoxVideoEdit.Controls.Add(this.textBoxConsole);
             this.groupBoxVideoEdit.Controls.Add(this.btnPictureInPicture);
             this.groupBoxVideoEdit.Controls.Add(this.btnSelectVideo);
-            this.groupBoxVideoEdit.Location = new System.Drawing.Point(788, 202);
+            this.groupBoxVideoEdit.Location = new System.Drawing.Point(788, 222);
             this.groupBoxVideoEdit.Name = "groupBoxVideoEdit";
             this.groupBoxVideoEdit.Size = new System.Drawing.Size(305, 235);
             this.groupBoxVideoEdit.TabIndex = 16;
             this.groupBoxVideoEdit.TabStop = false;
             this.groupBoxVideoEdit.Text = "Video Edit Controlls";
             // 
-            // btnSelectVideo
+            // labelCountVideos
             // 
-            this.btnSelectVideo.Location = new System.Drawing.Point(7, 30);
-            this.btnSelectVideo.Name = "btnSelectVideo";
-            this.btnSelectVideo.Size = new System.Drawing.Size(100, 35);
-            this.btnSelectVideo.TabIndex = 0;
-            this.btnSelectVideo.Text = "Select Video";
-            this.btnSelectVideo.UseVisualStyleBackColor = true;
-            this.btnSelectVideo.Click += new System.EventHandler(this.btnSelectVideo_Click);
+            this.labelCountVideos.AutoSize = true;
+            this.labelCountVideos.Location = new System.Drawing.Point(110, 82);
+            this.labelCountVideos.Name = "labelCountVideos";
+            this.labelCountVideos.Size = new System.Drawing.Size(171, 16);
+            this.labelCountVideos.TabIndex = 19;
+            this.labelCountVideos.Text = "Number of videos selected:";
+            // 
+            // btnTransition
+            // 
+            this.btnTransition.Enabled = false;
+            this.btnTransition.Location = new System.Drawing.Point(7, 72);
+            this.btnTransition.Name = "btnTransition";
+            this.btnTransition.Size = new System.Drawing.Size(100, 35);
+            this.btnTransition.TabIndex = 18;
+            this.btnTransition.Text = "Transition";
+            this.btnTransition.UseVisualStyleBackColor = true;
+            // 
+            // textBoxConsole
+            // 
+            this.textBoxConsole.Location = new System.Drawing.Point(7, 126);
+            this.textBoxConsole.Multiline = true;
+            this.textBoxConsole.Name = "textBoxConsole";
+            this.textBoxConsole.ReadOnly = true;
+            this.textBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxConsole.Size = new System.Drawing.Size(292, 94);
+            this.textBoxConsole.TabIndex = 18;
             // 
             // btnPictureInPicture
             // 
@@ -281,40 +311,137 @@
             this.btnPictureInPicture.UseVisualStyleBackColor = true;
             this.btnPictureInPicture.Click += new System.EventHandler(this.btnPictureInPicture_Click);
             // 
-            // textBoxConsole
+            // btnSelectVideo
             // 
-            this.textBoxConsole.Location = new System.Drawing.Point(7, 126);
-            this.textBoxConsole.Multiline = true;
-            this.textBoxConsole.Name = "textBoxConsole";
-            this.textBoxConsole.ReadOnly = true;
-            this.textBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxConsole.Size = new System.Drawing.Size(292, 94);
-            this.textBoxConsole.TabIndex = 18;
+            this.btnSelectVideo.Location = new System.Drawing.Point(7, 30);
+            this.btnSelectVideo.Name = "btnSelectVideo";
+            this.btnSelectVideo.Size = new System.Drawing.Size(100, 35);
+            this.btnSelectVideo.TabIndex = 0;
+            this.btnSelectVideo.Text = "Select Video";
+            this.btnSelectVideo.UseVisualStyleBackColor = true;
+            this.btnSelectVideo.Click += new System.EventHandler(this.btnSelectVideo_Click);
             // 
-            // btnTransition
+            // radioButtonResize
             // 
-            this.btnTransition.Enabled = false;
-            this.btnTransition.Location = new System.Drawing.Point(7, 72);
-            this.btnTransition.Name = "btnTransition";
-            this.btnTransition.Size = new System.Drawing.Size(100, 35);
-            this.btnTransition.TabIndex = 18;
-            this.btnTransition.Text = "Transition";
-            this.btnTransition.UseVisualStyleBackColor = true;
+            this.radioButtonResize.AutoSize = true;
+            this.radioButtonResize.Location = new System.Drawing.Point(18, 44);
+            this.radioButtonResize.Name = "radioButtonResize";
+            this.radioButtonResize.Size = new System.Drawing.Size(70, 20);
+            this.radioButtonResize.TabIndex = 17;
+            this.radioButtonResize.TabStop = true;
+            this.radioButtonResize.Text = "Resize";
+            this.radioButtonResize.UseVisualStyleBackColor = true;
+            this.radioButtonResize.CheckedChanged += new System.EventHandler(this.radioButtonResize_CheckedChanged);
             // 
-            // labelCountVideos
+            // numericUpDownResize
             // 
-            this.labelCountVideos.AutoSize = true;
-            this.labelCountVideos.Location = new System.Drawing.Point(110, 82);
-            this.labelCountVideos.Name = "labelCountVideos";
-            this.labelCountVideos.Size = new System.Drawing.Size(171, 16);
-            this.labelCountVideos.TabIndex = 19;
-            this.labelCountVideos.Text = "Number of videos selected:";
+            this.numericUpDownResize.DecimalPlaces = 1;
+            this.numericUpDownResize.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownResize.Location = new System.Drawing.Point(968, 150);
+            this.numericUpDownResize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownResize.Name = "numericUpDownResize";
+            this.numericUpDownResize.Size = new System.Drawing.Size(125, 22);
+            this.numericUpDownResize.TabIndex = 17;
+            this.numericUpDownResize.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // labelResize
+            // 
+            this.labelResize.AutoSize = true;
+            this.labelResize.Location = new System.Drawing.Point(868, 152);
+            this.labelResize.Name = "labelResize";
+            this.labelResize.Size = new System.Drawing.Size(88, 16);
+            this.labelResize.TabIndex = 18;
+            this.labelResize.Text = "Resize scale:";
+            // 
+            // labelRotate
+            // 
+            this.labelRotate.AutoSize = true;
+            this.labelRotate.Location = new System.Drawing.Point(868, 180);
+            this.labelRotate.Name = "labelRotate";
+            this.labelRotate.Size = new System.Drawing.Size(87, 16);
+            this.labelRotate.TabIndex = 20;
+            this.labelRotate.Text = "Rotate angle:";
+            // 
+            // numericUpDownAngle
+            // 
+            this.numericUpDownAngle.DecimalPlaces = 1;
+            this.numericUpDownAngle.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownAngle.Location = new System.Drawing.Point(968, 178);
+            this.numericUpDownAngle.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.numericUpDownAngle.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownAngle.Name = "numericUpDownAngle";
+            this.numericUpDownAngle.Size = new System.Drawing.Size(125, 22);
+            this.numericUpDownAngle.TabIndex = 19;
+            // 
+            // radioButtonRotate
+            // 
+            this.radioButtonRotate.AutoSize = true;
+            this.radioButtonRotate.Location = new System.Drawing.Point(18, 79);
+            this.radioButtonRotate.Name = "radioButtonRotate";
+            this.radioButtonRotate.Size = new System.Drawing.Size(68, 20);
+            this.radioButtonRotate.TabIndex = 21;
+            this.radioButtonRotate.TabStop = true;
+            this.radioButtonRotate.Text = "Rotate";
+            this.radioButtonRotate.UseVisualStyleBackColor = true;
+            this.radioButtonRotate.CheckedChanged += new System.EventHandler(this.radioButtonRotate_CheckedChanged);
+            // 
+            // groupBoxResizeRotate
+            // 
+            this.groupBoxResizeRotate.Controls.Add(this.radioButtonDefault);
+            this.groupBoxResizeRotate.Controls.Add(this.radioButtonResize);
+            this.groupBoxResizeRotate.Controls.Add(this.radioButtonRotate);
+            this.groupBoxResizeRotate.Location = new System.Drawing.Point(643, 294);
+            this.groupBoxResizeRotate.Name = "groupBoxResizeRotate";
+            this.groupBoxResizeRotate.Size = new System.Drawing.Size(128, 143);
+            this.groupBoxResizeRotate.TabIndex = 22;
+            this.groupBoxResizeRotate.TabStop = false;
+            this.groupBoxResizeRotate.Text = "Resize and Rotate";
+            // 
+            // radioButtonDefault
+            // 
+            this.radioButtonDefault.AutoSize = true;
+            this.radioButtonDefault.Location = new System.Drawing.Point(18, 111);
+            this.radioButtonDefault.Name = "radioButtonDefault";
+            this.radioButtonDefault.Size = new System.Drawing.Size(70, 20);
+            this.radioButtonDefault.TabIndex = 23;
+            this.radioButtonDefault.TabStop = true;
+            this.radioButtonDefault.Text = "Default";
+            this.radioButtonDefault.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1105, 470);
+            this.Controls.Add(this.groupBoxResizeRotate);
+            this.Controls.Add(this.labelRotate);
+            this.Controls.Add(this.numericUpDownAngle);
+            this.Controls.Add(this.labelResize);
+            this.Controls.Add(this.numericUpDownResize);
             this.Controls.Add(this.groupBoxVideoEdit);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxColorMap);
@@ -335,6 +462,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).EndInit();
             this.groupBoxVideoEdit.ResumeLayout(false);
             this.groupBoxVideoEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).EndInit();
+            this.groupBoxResizeRotate.ResumeLayout(false);
+            this.groupBoxResizeRotate.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,6 +496,14 @@
         private System.Windows.Forms.TextBox textBoxConsole;
         private System.Windows.Forms.Button btnPictureInPicture;
         private System.Windows.Forms.Button btnSelectVideo;
+        private System.Windows.Forms.RadioButton radioButtonResize;
+        private System.Windows.Forms.NumericUpDown numericUpDownResize;
+        private System.Windows.Forms.Label labelResize;
+        private System.Windows.Forms.Label labelRotate;
+        private System.Windows.Forms.NumericUpDown numericUpDownAngle;
+        private System.Windows.Forms.RadioButton radioButtonRotate;
+        private System.Windows.Forms.GroupBox groupBoxResizeRotate;
+        private System.Windows.Forms.RadioButton radioButtonDefault;
     }
 }
 

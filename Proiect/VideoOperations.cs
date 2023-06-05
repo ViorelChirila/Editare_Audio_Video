@@ -15,10 +15,14 @@ namespace Proiect
         public event EventHandler<VideoEventArgs> FrameUpdated;
         public event EventHandler<VideoEventArgs> VideoLoad;
         public Flags flags = new Flags();
+        ImageResize imageResize = new ImageResize();
+        ImageRotate imageRotate = new ImageRotate();
         public Rectangle rect;
         private Video video;
         private double gammaValue;
         private ColorMapType colorMap;
+        private double resizeValue;
+        private double angleValue;
 
         public void LoadVideo()
         {
@@ -90,6 +94,16 @@ namespace Proiect
             colorMap = value;
         }
 
+        public void SetResizeValue(double value)
+        {
+            resizeValue = value;
+        }
+
+        public void SetAngleValue(double value)
+        {
+            angleValue = value;
+        }
+
         private Bitmap ApplyFlagsOperations(ImageColorProcess changer, Mat mat)
         {
             switch(true)
@@ -112,6 +126,12 @@ namespace Proiect
                 case bool isChecked when flags.colorMapFlag:
                     changer.ImageSet(mat.ToImage<Bgr, byte>());
                     return changer.ColorMap(colorMap);
+                case bool isChecked when flags.resizeFlag:
+                    imageResize.ImageSet(mat.ToImage<Bgr, byte>());
+                    return imageResize.Resize(resizeValue);
+                case bool isChecked when flags.rotateFlag:
+                    imageRotate.ImageSet(mat.ToImage<Bgr, byte>());
+                    return imageRotate.Rotate(angleValue);
                 default:
                     return mat.ToBitmap();
             }

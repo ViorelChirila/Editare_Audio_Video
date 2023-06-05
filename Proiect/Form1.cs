@@ -29,6 +29,7 @@ namespace Proiect
         {
             InitializeComponent();
             ExtractColorMapValues();
+            numericUpDownResize.Value = 1;
         }
 
         private void btnLoadVideo_Click(object sender, EventArgs e)
@@ -40,6 +41,7 @@ namespace Proiect
             if (result == DialogResult.Yes)
             {
                 operation.flags.roiFlag = true;
+                radioButtonResize.Enabled = false;
             }
             else
             {
@@ -72,7 +74,6 @@ namespace Proiect
             await operation.ReadAllFrames();
         }
 
-        
 
         private void radioButtonGray_CheckedChanged(object sender, EventArgs e)
         {
@@ -102,6 +103,16 @@ namespace Proiect
             double gammaValue = (double)numericUpDownGamma.Value;
             operation.SetGammaValue(gammaValue);
             operation.flags.gammaFlag = radioButtonGamma.Checked;
+        }
+        private void radioButtonResize_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.SetResizeValue((double)numericUpDownResize.Value);
+            operation.flags.resizeFlag = radioButtonResize.Checked;
+        }
+        private void radioButtonRotate_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.SetAngleValue((double)numericUpDownAngle.Value);
+            operation.flags.rotateFlag = radioButtonRotate.Checked;
         }
         private void pBVideo_Paint(object sender, PaintEventArgs e)
         {
@@ -223,5 +234,6 @@ namespace Proiect
             }
            
         }
+
     }
 }
