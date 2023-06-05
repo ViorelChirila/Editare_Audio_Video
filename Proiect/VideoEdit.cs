@@ -17,6 +17,7 @@ namespace Proiect
         private Video firstVideo;
         private Video secondVideo;
         private String errorString;
+        DateTime timestamp;
         public VideoEdit()
         {
             firstVideo = new Video();
@@ -27,7 +28,9 @@ namespace Proiect
             firstVideo.LoadVideo();
             if (firstVideo.GetCapture() == null)
             {
-                errorString = "First video not loaded!!";
+                timestamp = DateTime.Now;
+                string timestampString = timestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                errorString += timestampString + ": First video not loaded!!";
                 return;
             }
             errorString = null;
@@ -37,7 +40,9 @@ namespace Proiect
             secondVideo.LoadVideo();
             if (secondVideo.GetCapture() == null)
             {
-                errorString = "Second video not loaded!!";
+                timestamp = DateTime.Now;
+                string timestampString = timestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                errorString += timestampString + ": Second video not loaded!!";
                 return;
             }
             errorString = null;
@@ -50,32 +55,45 @@ namespace Proiect
 
         public void PictureInPicture()
         {
-            string destinationpath = @"D:\Laborator AudioVideo\Proiect\Video\Video.mp4";
-            int width = firstVideo.GetWidth();
-            int height = firstVideo.GetHeight();
-            double fps = firstVideo.GetFps();
-            using (VideoWriter writer = new VideoWriter(destinationpath, firstVideo.GetFourcc(), fps, new Size(width, height), true))
+            if(secondVideo.GetTotalFrames() < firstVideo.GetTotalFrames())
             {
-                Mat m = new Mat();
-                Mat m2 = new Mat();
-
-                var FrameNo = 1;
-                while (FrameNo < firstVideo.GetTotalFrames())
+                timestamp = DateTime.Now;
+                string timestampString = timestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                errorString += timestampString + ": Second video must have at least the same length!!";
+                return;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Video Files|*.mp4;*.avi;*.mov|All Files|*.*";
+            saveFileDialog.Title = "Save Video File";
+            saveFileDialog.ShowDialog();
+            
+            if (saveFileDialog.FileName != "")
+            {
+                String destinationpath = saveFileDialog.FileName;
+                int width = firstVideo.GetWidth();
+                int height = firstVideo.GetHeight();
+                double fps = firstVideo.GetFps();
+                using (VideoWriter writer = new VideoWriter(destinationpath, firstVideo.GetFourcc(), fps, new Size(width, height), true))
                 {
-                    firstVideo.GetCapture().Read(m);
-                    secondVideo.GetCapture().Read(m2);
-                    Image<Bgr, byte> secondVideoPicture = m2.ToImage<Bgr, byte>();
-                    //secondVideoPicture.Resize(1000, 600, Inter.Linear);
-                    Image<Bgr, byte> img = m.ToImage<Bgr, byte>();
-                    img.ROI = new Rectangle(0, 0, secondVideoPicture.Width, secondVideoPicture.Height);
-                    secondVideoPicture.CopyTo(img);
-
-                    img.ROI = Rectangle.Empty;
-
-                    writer.Write(img.Mat);
-                    FrameNo++;
+                    Mat m = new Mat();
+                    Mat m2 = new Mat();
+                    var FrameNo = 1;
+                    while (FrameNo < firstVideo.GetTotalFrames())
+                    {
+                        firstVideo.GetCapture().Read(m);
+                        secondVideo.GetCapture().Read(m2);
+                        Image<Bgr, byte> secondVideoPicture = m2.ToImage<Bgr, byte>();
+                        secondVideoPicture = secondVideoPicture.Resize(width / 2, height / 2, Inter.Cubic);
+                        Image<Bgr, byte> img = m.ToImage<Bgr, byte>();
+                        img.ROI = new Rectangle(0, 0, secondVideoPicture.Width,secondVideoPicture.Height );
+                        secondVideoPicture.CopyTo(img);
+                        img.ROI = Rectangle.Empty;
+                        writer.Write(img.Mat);
+                        FrameNo++;
+                    }
                 }
             }
+            
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Proiect
         bool MouseDown;
         int numberOfVideos = 0;
         Array colorMapValues = Enum.GetValues(typeof(ColorMapType));
+        DateTime timestamp;
         public Form1()
         {
             InitializeComponent();
@@ -171,7 +172,9 @@ namespace Proiect
             }
             else
             {
-                textBoxConsole.AppendText("First video loaded!") ;
+                timestamp = DateTime.Now;
+                string timestampString = timestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                textBoxConsole.AppendText(timestampString+ ": First video loaded!") ;
                 textBoxConsole.AppendText(Environment.NewLine);
                 labelCountVideos.Text = "No. videos selected: 1/2";
                 numberOfVideos++;
@@ -185,7 +188,9 @@ namespace Proiect
             }
             else
             {
-                textBoxConsole.AppendText("Second video loaded!");
+                timestamp = DateTime.Now;
+                string timestampString = timestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                textBoxConsole.AppendText(timestampString+": Second video loaded!");
                 textBoxConsole.AppendText(Environment.NewLine);
                 labelCountVideos.Text = "No. videos selected: 2/2";
                 numberOfVideos++;
@@ -201,14 +206,22 @@ namespace Proiect
 
         private void btnPictureInPicture_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Video Files|*.mp4;*.avi;*.mov|All Files|*.*";
-            saveFileDialog.Title = "Save Video File";
-            //saveFileDialog.ShowDialog();
-            if(numberOfVideos == 2)
+            videoEdit.PictureInPicture();
+            if(videoEdit.GetErrorString() != null)
             {
-                videoEdit.PictureInPicture();
+                textBoxConsole.AppendText(videoEdit.GetErrorString());
+                textBoxConsole.AppendText(Environment.NewLine);
+                return;
             }
+            else
+            {
+                timestamp = DateTime.Now;
+                string timestampString = timestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                textBoxConsole.AppendText(timestampString+ ": Picture in picture done!");
+                textBoxConsole.AppendText(Environment.NewLine);
+                btnPictureInPicture.Enabled = false;
+            }
+           
         }
     }
 }
