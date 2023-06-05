@@ -59,6 +59,7 @@
             this.radioButtonRotate = new System.Windows.Forms.RadioButton();
             this.groupBoxResizeRotate = new System.Windows.Forms.GroupBox();
             this.radioButtonDefault = new System.Windows.Forms.RadioButton();
+            this.radioButtonCarousel = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).BeginInit();
             this.groupBoxColorModifier.SuspendLayout();
@@ -167,6 +168,7 @@
             // 
             // groupBoxColorModifier
             // 
+            this.groupBoxColorModifier.Controls.Add(this.radioButtonCarousel);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonColorMap);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonGamma);
             this.groupBoxColorModifier.Controls.Add(this.radioButtonNormal);
@@ -176,7 +178,7 @@
             this.groupBoxColorModifier.Controls.Add(this.radioButtonGreen);
             this.groupBoxColorModifier.Location = new System.Drawing.Point(643, 12);
             this.groupBoxColorModifier.Name = "groupBoxColorModifier";
-            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 275);
+            this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 317);
             this.groupBoxColorModifier.TabIndex = 11;
             this.groupBoxColorModifier.TabStop = false;
             this.groupBoxColorModifier.Text = "Color Modifiers";
@@ -184,7 +186,7 @@
             // radioButtonColorMap
             // 
             this.radioButtonColorMap.AutoSize = true;
-            this.radioButtonColorMap.Location = new System.Drawing.Point(18, 245);
+            this.radioButtonColorMap.Location = new System.Drawing.Point(18, 275);
             this.radioButtonColorMap.Name = "radioButtonColorMap";
             this.radioButtonColorMap.Size = new System.Drawing.Size(90, 20);
             this.radioButtonColorMap.TabIndex = 16;
@@ -196,7 +198,7 @@
             // radioButtonGamma
             // 
             this.radioButtonGamma.AutoSize = true;
-            this.radioButtonGamma.Location = new System.Drawing.Point(18, 210);
+            this.radioButtonGamma.Location = new System.Drawing.Point(18, 240);
             this.radioButtonGamma.Name = "radioButtonGamma";
             this.radioButtonGamma.Size = new System.Drawing.Size(76, 20);
             this.radioButtonGamma.TabIndex = 14;
@@ -266,7 +268,7 @@
             this.groupBoxVideoEdit.Controls.Add(this.btnSelectVideo);
             this.groupBoxVideoEdit.Location = new System.Drawing.Point(788, 222);
             this.groupBoxVideoEdit.Name = "groupBoxVideoEdit";
-            this.groupBoxVideoEdit.Size = new System.Drawing.Size(305, 235);
+            this.groupBoxVideoEdit.Size = new System.Drawing.Size(305, 269);
             this.groupBoxVideoEdit.TabIndex = 16;
             this.groupBoxVideoEdit.TabStop = false;
             this.groupBoxVideoEdit.Text = "Video Edit Controlls";
@@ -297,7 +299,7 @@
             this.textBoxConsole.Name = "textBoxConsole";
             this.textBoxConsole.ReadOnly = true;
             this.textBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxConsole.Size = new System.Drawing.Size(292, 94);
+            this.textBoxConsole.Size = new System.Drawing.Size(292, 131);
             this.textBoxConsole.TabIndex = 18;
             // 
             // btnPictureInPicture
@@ -414,7 +416,7 @@
             this.groupBoxResizeRotate.Controls.Add(this.radioButtonDefault);
             this.groupBoxResizeRotate.Controls.Add(this.radioButtonResize);
             this.groupBoxResizeRotate.Controls.Add(this.radioButtonRotate);
-            this.groupBoxResizeRotate.Location = new System.Drawing.Point(643, 294);
+            this.groupBoxResizeRotate.Location = new System.Drawing.Point(643, 348);
             this.groupBoxResizeRotate.Name = "groupBoxResizeRotate";
             this.groupBoxResizeRotate.Size = new System.Drawing.Size(128, 143);
             this.groupBoxResizeRotate.TabIndex = 22;
@@ -432,11 +434,23 @@
             this.radioButtonDefault.Text = "Default";
             this.radioButtonDefault.UseVisualStyleBackColor = true;
             // 
+            // radioButtonCarousel
+            // 
+            this.radioButtonCarousel.AutoSize = true;
+            this.radioButtonCarousel.Location = new System.Drawing.Point(18, 210);
+            this.radioButtonCarousel.Name = "radioButtonCarousel";
+            this.radioButtonCarousel.Size = new System.Drawing.Size(82, 20);
+            this.radioButtonCarousel.TabIndex = 17;
+            this.radioButtonCarousel.TabStop = true;
+            this.radioButtonCarousel.Text = "Carousel";
+            this.radioButtonCarousel.UseVisualStyleBackColor = true;
+            this.radioButtonCarousel.CheckedChanged += new System.EventHandler(this.radioButtonCarousel_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1105, 470);
+            this.ClientSize = new System.Drawing.Size(1105, 509);
             this.Controls.Add(this.groupBoxResizeRotate);
             this.Controls.Add(this.labelRotate);
             this.Controls.Add(this.numericUpDownAngle);
@@ -504,6 +518,7 @@
         private System.Windows.Forms.RadioButton radioButtonRotate;
         private System.Windows.Forms.GroupBox groupBoxResizeRotate;
         private System.Windows.Forms.RadioButton radioButtonDefault;
+        private System.Windows.Forms.RadioButton radioButtonCarousel;
     }
 }
 

@@ -14,6 +14,7 @@ namespace Proiect
     internal class ImageColorProcess
     {
         private Image<Bgr, byte> image;
+        int carouselIndex;
 
         public void ImageSet(Image<Bgr, byte> image)
         { 
@@ -61,6 +62,33 @@ namespace Proiect
             Image<Bgr, byte> colorMapImage = new Image<Bgr, byte>(image.Width, image.Height);
             CvInvoke.ApplyColorMap(image, colorMapImage, colorMapType);
             return colorMapImage.AsBitmap();
+        }
+
+        public void UpdateCarouselIndex()
+        {
+            carouselIndex = (carouselIndex + 1) % 4;
+        }
+        public Bitmap Carousel()
+        {
+            Bitmap processedFrame = image.AsBitmap();
+
+            switch (carouselIndex)
+            {
+                case 0:
+                    processedFrame = this.RedFilter();
+                    break;
+                case 1:
+                    processedFrame= this.GreenFilter();
+                    break;
+                case 2:
+                    processedFrame= this.BlueFilter();
+                    break;
+                case 3:
+                    processedFrame= this.Gryscale();
+                    break;
+            }
+
+            return processedFrame;
         }
     }
 }

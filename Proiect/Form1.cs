@@ -235,5 +235,9 @@ namespace Proiect
            
         }
 
+        private void radioButtonCarousel_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.flags.carouselFlag = radioButtonCarousel.Checked;
+        }
     }
 }

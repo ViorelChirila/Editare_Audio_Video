@@ -43,6 +43,10 @@ namespace Proiect
             VideoEventArgs args = new VideoEventArgs();
             while (video.GetFrameNo() < video.GetTotalFrames())
             {
+                if(video.GetFrameNo()%5 == 0)
+                {
+                    colorChanger.UpdateCarouselIndex();
+                }
                 video.IncreaseFrameNo();
                 var mat = video.GetCapture().QueryFrame();
                 if (flags.roiFlag)
@@ -120,6 +124,9 @@ namespace Proiect
                 case bool isChecked when flags.blueFilterFlag:
                     changer.ImageSet(mat.ToImage<Bgr, byte>());
                     return changer.BlueFilter();
+                case bool isChecked when flags.carouselFlag:
+                    changer.ImageSet(mat.ToImage<Bgr, byte>());
+                    return changer.Carousel();
                 case bool isChecked when flags.gammaFlag:
                     changer.ImageSet(mat.ToImage<Bgr, byte>());
                     return changer.GammaCorrection(gammaValue);

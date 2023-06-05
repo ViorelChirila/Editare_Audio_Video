@@ -13,6 +13,7 @@ namespace Proiect
         public bool greenFilterFlag;
         public bool blueFilterFlag;
         public bool roiFlag;
+        public bool carouselFlag;
         public bool gammaFlag;
         public bool colorMapFlag;
         public bool resizeFlag;
