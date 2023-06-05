@@ -15,6 +15,9 @@ namespace Proiect
         private double Fps;
         private int totalFrame;
         private int frameNo;
+        private int width;
+        private int height;
+        private int fourcc;
         private Mat m;
 
         public void LoadVideo()
@@ -23,6 +26,9 @@ namespace Proiect
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 capture = new VideoCapture(ofd.FileName);
+                width = Convert.ToInt32(capture.Get(CapProp.FrameWidth));
+                height = Convert.ToInt32(capture.Get(CapProp.FrameHeight));
+                fourcc = Convert.ToInt32(capture.Get(CapProp.FourCC));
                 m= new Mat();
                 capture.Read(m);
 
@@ -32,24 +38,39 @@ namespace Proiect
             }
         }
 
-        public VideoCapture getCapture()
+        public VideoCapture GetCapture()
         {
             return capture;
         }
 
-        public int getTotalFrames()
+        public int GetTotalFrames()
         {
             return totalFrame;
         }
 
-        public int getFrameNo() 
+        public int GetFrameNo() 
         {
             return frameNo;
         }
 
-        public double getFps()
+        public double GetFps()
         {
             return Fps;
+        }
+
+        public int GetWidth()
+        {
+            return width;
+        }
+
+        public int GetHeight()
+        {
+            return height;
+        }
+
+        public int GetFourcc()
+        {
+            return fourcc;
         }
 
         public Mat GetMat()

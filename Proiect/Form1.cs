@@ -18,9 +18,11 @@ namespace Proiect
     public partial class Form1 : Form
     {
         VideoOperations operation = new VideoOperations();
+        VideoEdit videoEdit = new VideoEdit();
         Rectangle rect;
         Point StartROI;
         bool MouseDown;
+        int numberOfVideos = 0;
         Array colorMapValues = Enum.GetValues(typeof(ColorMapType));
         public Form1()
         {
@@ -157,6 +159,56 @@ namespace Proiect
             operation.SetColorMap(selectedValue);
         }
 
-        
+        private void btnSelectVideo_Click(object sender, EventArgs e)
+        {
+            
+            videoEdit.LoadFirstVideo();
+            if(videoEdit.GetErrorString() != null)
+            {
+                textBoxConsole.AppendText(videoEdit.GetErrorString());
+                textBoxConsole.AppendText(Environment.NewLine);
+                return;
+            }
+            else
+            {
+                textBoxConsole.AppendText("First video loaded!") ;
+                textBoxConsole.AppendText(Environment.NewLine);
+                labelCountVideos.Text = "No. videos selected: 1/2";
+                numberOfVideos++;
+            }
+            videoEdit.LoadSecondVideo();
+            if(videoEdit.GetErrorString() != null)
+            {
+                textBoxConsole.AppendText(videoEdit.GetErrorString());
+                textBoxConsole.AppendText(Environment.NewLine);
+                return;
+            }
+            else
+            {
+                textBoxConsole.AppendText("Second video loaded!");
+                textBoxConsole.AppendText(Environment.NewLine);
+                labelCountVideos.Text = "No. videos selected: 2/2";
+                numberOfVideos++;
+            }
+            if(numberOfVideos == 2)
+            {
+                btnSelectVideo.Enabled = false;
+                btnPictureInPicture.Enabled = true;
+            }
+            
+            
+        }
+
+        private void btnPictureInPicture_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Video Files|*.mp4;*.avi;*.mov|All Files|*.*";
+            saveFileDialog.Title = "Save Video File";
+            //saveFileDialog.ShowDialog();
+            if(numberOfVideos == 2)
+            {
+                videoEdit.PictureInPicture();
+            }
+        }
     }
 }

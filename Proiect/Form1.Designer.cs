@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pBVideo = new System.Windows.Forms.PictureBox();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnLoadVideo = new System.Windows.Forms.Button();
@@ -39,19 +38,24 @@
             this.radioButtonGreen = new System.Windows.Forms.RadioButton();
             this.radioButtonBlue = new System.Windows.Forms.RadioButton();
             this.groupBoxColorModifier = new System.Windows.Forms.GroupBox();
+            this.radioButtonColorMap = new System.Windows.Forms.RadioButton();
+            this.radioButtonGamma = new System.Windows.Forms.RadioButton();
             this.radioButtonNormal = new System.Windows.Forms.RadioButton();
             this.numericUpDownGamma = new System.Windows.Forms.NumericUpDown();
             this.labelGammaValue = new System.Windows.Forms.Label();
-            this.radioButtonGamma = new System.Windows.Forms.RadioButton();
             this.comboBoxColorMap = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radioButtonColorMap = new System.Windows.Forms.RadioButton();
+            this.groupBoxVideoEdit = new System.Windows.Forms.GroupBox();
+            this.btnSelectVideo = new System.Windows.Forms.Button();
+            this.btnPictureInPicture = new System.Windows.Forms.Button();
+            this.textBoxConsole = new System.Windows.Forms.TextBox();
+            this.btnTransition = new System.Windows.Forms.Button();
+            this.labelCountVideos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pBVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVideo)).BeginInit();
             this.groupBoxColorModifier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
+            this.groupBoxVideoEdit.SuspendLayout();
             this.SuspendLayout();
             // 
             // pBVideo
@@ -164,7 +168,31 @@
             this.groupBoxColorModifier.Size = new System.Drawing.Size(128, 288);
             this.groupBoxColorModifier.TabIndex = 11;
             this.groupBoxColorModifier.TabStop = false;
-            this.groupBoxColorModifier.Text = "ColorModifiers";
+            this.groupBoxColorModifier.Text = "Color Modifiers";
+            // 
+            // radioButtonColorMap
+            // 
+            this.radioButtonColorMap.AutoSize = true;
+            this.radioButtonColorMap.Location = new System.Drawing.Point(18, 245);
+            this.radioButtonColorMap.Name = "radioButtonColorMap";
+            this.radioButtonColorMap.Size = new System.Drawing.Size(90, 20);
+            this.radioButtonColorMap.TabIndex = 16;
+            this.radioButtonColorMap.TabStop = true;
+            this.radioButtonColorMap.Text = "Color Map";
+            this.radioButtonColorMap.UseVisualStyleBackColor = true;
+            this.radioButtonColorMap.CheckedChanged += new System.EventHandler(this.radioButtonColorMap_CheckedChanged);
+            // 
+            // radioButtonGamma
+            // 
+            this.radioButtonGamma.AutoSize = true;
+            this.radioButtonGamma.Location = new System.Drawing.Point(18, 210);
+            this.radioButtonGamma.Name = "radioButtonGamma";
+            this.radioButtonGamma.Size = new System.Drawing.Size(76, 20);
+            this.radioButtonGamma.TabIndex = 14;
+            this.radioButtonGamma.TabStop = true;
+            this.radioButtonGamma.Text = "Gamma";
+            this.radioButtonGamma.UseVisualStyleBackColor = true;
+            this.radioButtonGamma.CheckedChanged += new System.EventHandler(this.radioButtonGamma_CheckedChanged);
             // 
             // radioButtonNormal
             // 
@@ -199,18 +227,6 @@
             this.labelGammaValue.TabIndex = 13;
             this.labelGammaValue.Text = "Gamma value:";
             // 
-            // radioButtonGamma
-            // 
-            this.radioButtonGamma.AutoSize = true;
-            this.radioButtonGamma.Location = new System.Drawing.Point(18, 210);
-            this.radioButtonGamma.Name = "radioButtonGamma";
-            this.radioButtonGamma.Size = new System.Drawing.Size(76, 20);
-            this.radioButtonGamma.TabIndex = 14;
-            this.radioButtonGamma.TabStop = true;
-            this.radioButtonGamma.Text = "Gamma";
-            this.radioButtonGamma.UseVisualStyleBackColor = true;
-            this.radioButtonGamma.CheckedChanged += new System.EventHandler(this.radioButtonGamma_CheckedChanged);
-            // 
             // comboBoxColorMap
             // 
             this.comboBoxColorMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -230,27 +246,76 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Color map mode:";
             // 
-            // form1BindingSource
+            // groupBoxVideoEdit
             // 
-            this.form1BindingSource.DataSource = typeof(Proiect.Form1);
+            this.groupBoxVideoEdit.Controls.Add(this.labelCountVideos);
+            this.groupBoxVideoEdit.Controls.Add(this.btnTransition);
+            this.groupBoxVideoEdit.Controls.Add(this.textBoxConsole);
+            this.groupBoxVideoEdit.Controls.Add(this.btnPictureInPicture);
+            this.groupBoxVideoEdit.Controls.Add(this.btnSelectVideo);
+            this.groupBoxVideoEdit.Location = new System.Drawing.Point(788, 202);
+            this.groupBoxVideoEdit.Name = "groupBoxVideoEdit";
+            this.groupBoxVideoEdit.Size = new System.Drawing.Size(305, 235);
+            this.groupBoxVideoEdit.TabIndex = 16;
+            this.groupBoxVideoEdit.TabStop = false;
+            this.groupBoxVideoEdit.Text = "Video Edit Controlls";
             // 
-            // radioButtonColorMap
+            // btnSelectVideo
             // 
-            this.radioButtonColorMap.AutoSize = true;
-            this.radioButtonColorMap.Location = new System.Drawing.Point(18, 245);
-            this.radioButtonColorMap.Name = "radioButtonColorMap";
-            this.radioButtonColorMap.Size = new System.Drawing.Size(90, 20);
-            this.radioButtonColorMap.TabIndex = 16;
-            this.radioButtonColorMap.TabStop = true;
-            this.radioButtonColorMap.Text = "Color Map";
-            this.radioButtonColorMap.UseVisualStyleBackColor = true;
-            this.radioButtonColorMap.CheckedChanged += new System.EventHandler(this.radioButtonColorMap_CheckedChanged);
+            this.btnSelectVideo.Location = new System.Drawing.Point(7, 30);
+            this.btnSelectVideo.Name = "btnSelectVideo";
+            this.btnSelectVideo.Size = new System.Drawing.Size(100, 35);
+            this.btnSelectVideo.TabIndex = 0;
+            this.btnSelectVideo.Text = "Select Video";
+            this.btnSelectVideo.UseVisualStyleBackColor = true;
+            this.btnSelectVideo.Click += new System.EventHandler(this.btnSelectVideo_Click);
+            // 
+            // btnPictureInPicture
+            // 
+            this.btnPictureInPicture.Enabled = false;
+            this.btnPictureInPicture.Location = new System.Drawing.Point(113, 30);
+            this.btnPictureInPicture.Name = "btnPictureInPicture";
+            this.btnPictureInPicture.Size = new System.Drawing.Size(133, 35);
+            this.btnPictureInPicture.TabIndex = 17;
+            this.btnPictureInPicture.Text = "Picture in Picture";
+            this.btnPictureInPicture.UseVisualStyleBackColor = true;
+            this.btnPictureInPicture.Click += new System.EventHandler(this.btnPictureInPicture_Click);
+            // 
+            // textBoxConsole
+            // 
+            this.textBoxConsole.Location = new System.Drawing.Point(7, 126);
+            this.textBoxConsole.Multiline = true;
+            this.textBoxConsole.Name = "textBoxConsole";
+            this.textBoxConsole.ReadOnly = true;
+            this.textBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxConsole.Size = new System.Drawing.Size(292, 94);
+            this.textBoxConsole.TabIndex = 18;
+            // 
+            // btnTransition
+            // 
+            this.btnTransition.Enabled = false;
+            this.btnTransition.Location = new System.Drawing.Point(7, 72);
+            this.btnTransition.Name = "btnTransition";
+            this.btnTransition.Size = new System.Drawing.Size(100, 35);
+            this.btnTransition.TabIndex = 18;
+            this.btnTransition.Text = "Transition";
+            this.btnTransition.UseVisualStyleBackColor = true;
+            // 
+            // labelCountVideos
+            // 
+            this.labelCountVideos.AutoSize = true;
+            this.labelCountVideos.Location = new System.Drawing.Point(110, 82);
+            this.labelCountVideos.Name = "labelCountVideos";
+            this.labelCountVideos.Size = new System.Drawing.Size(171, 16);
+            this.labelCountVideos.TabIndex = 19;
+            this.labelCountVideos.Text = "Number of videos selected:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1105, 470);
+            this.Controls.Add(this.groupBoxVideoEdit);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxColorMap);
             this.Controls.Add(this.labelGammaValue);
@@ -268,7 +333,8 @@
             this.groupBoxColorModifier.ResumeLayout(false);
             this.groupBoxColorModifier.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
+            this.groupBoxVideoEdit.ResumeLayout(false);
+            this.groupBoxVideoEdit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,8 +358,13 @@
         private System.Windows.Forms.Label labelGammaValue;
         private System.Windows.Forms.ComboBox comboBoxColorMap;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.BindingSource form1BindingSource;
         private System.Windows.Forms.RadioButton radioButtonColorMap;
+        private System.Windows.Forms.GroupBox groupBoxVideoEdit;
+        private System.Windows.Forms.Label labelCountVideos;
+        private System.Windows.Forms.Button btnTransition;
+        private System.Windows.Forms.TextBox textBoxConsole;
+        private System.Windows.Forms.Button btnPictureInPicture;
+        private System.Windows.Forms.Button btnSelectVideo;
     }
 }
 

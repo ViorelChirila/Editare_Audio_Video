@@ -24,12 +24,12 @@ namespace Proiect
         {
             video = new Video();
             video.LoadVideo();
-            if (video.getCapture() == null)
+            if (video.GetCapture() == null)
             {
                 return;
             }
             VideoEventArgs args = new VideoEventArgs();
-            args.TotalFrames = video.getTotalFrames();
+            args.TotalFrames = video.GetTotalFrames();
             args.m = video.GetMat();
             OnVideoLoad(args);
         }
@@ -37,10 +37,10 @@ namespace Proiect
         {
             ImageColorProcess colorChanger = new ImageColorProcess();
             VideoEventArgs args = new VideoEventArgs();
-            while (video.getFrameNo() < video.getTotalFrames())
+            while (video.GetFrameNo() < video.GetTotalFrames())
             {
                 video.IncreaseFrameNo();
-                var mat = video.getCapture().QueryFrame();
+                var mat = video.GetCapture().QueryFrame();
                 if (flags.roiFlag)
                 {
                     args.Bitmap = SubstractROI(colorChanger, mat);
@@ -49,9 +49,9 @@ namespace Proiect
                 {
                     args.Bitmap = ApplyFlagsOperations(colorChanger, mat);
                 }
-                args.FrameNo = video.getFrameNo();
-                args.TotalFrames = video.getTotalFrames();
-                await Task.Delay(1000 / Convert.ToInt16(video.getFps()));
+                args.FrameNo = video.GetFrameNo();
+                args.TotalFrames = video.GetTotalFrames();
+                await Task.Delay(1000 / Convert.ToInt16(video.GetFps()));
                 OnFrameUpdated(args);
             }
         }
