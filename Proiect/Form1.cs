@@ -94,6 +94,10 @@ namespace Proiect
         {
             operation.flags.blueFilterFlag = radioButtonBlue.Checked;
         }
+        private void radioButtonCarousel_CheckedChanged(object sender, EventArgs e)
+        {
+            operation.flags.carouselFlag = radioButtonCarousel.Checked;
+        }
         private void radioButtonColorMap_CheckedChanged(object sender, EventArgs e)
         {
             operation.flags.colorMapFlag = radioButtonColorMap.Checked;
@@ -235,9 +239,5 @@ namespace Proiect
            
         }
 
-        private void radioButtonCarousel_CheckedChanged(object sender, EventArgs e)
-        {
-            operation.flags.carouselFlag = radioButtonCarousel.Checked;
-        }
     }
 }
